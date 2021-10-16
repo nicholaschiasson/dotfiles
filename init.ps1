@@ -1,3 +1,11 @@
+Set-ExecutionPolicy Bypass -Scope Process -Force
+
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+
+$wc = New-Object System.Net.WebClient
+
+iex ($wc.DownloadString('https://community.chocolatey.org/install.ps1'))
+
 cinst -y 7zip
 cinst -y alacritty
 cinst -y audacity
@@ -39,6 +47,12 @@ cinst -y spotify
 cinst -y steam-client
 cinst -y telegram
 cinst -y uplay
+cinst -y visualstudio2019-workload-vctools
 cinst -y vlc
 cinst -y vscode
 cinst -y WhatsApp
+
+$rustup_init = "rustup-init.exe"
+$rustup_init_file = "${env:TEMP}/$rustup_init"
+$wc.DownloadFile("https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/$rustup_init", $rustup_init_file)
+iex "$rustup_init_file -y"
