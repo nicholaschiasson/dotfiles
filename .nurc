@@ -1,0 +1,24 @@
+# Encrypt a file or folder with AES256.
+def enc [
+	path: path # The path to the file or folder to encrypt.
+	--clean (-c) # Delete the input file or folder after encrypting.
+] {
+	let-env GPG_TTY = (tty)
+	let d = (echo $path | path dirname)
+	let p = (echo $path | path basename)
+	tar -cvzf - $path | gpg -cu --no-symkey-cache --cipher-algo AES256 -o $"($d)/($p).tar.gz.gpg"
+	if (echo $clean | empty?) {} {
+		rm -rf $path
+	}
+}
+
+# Decrypt a file or folder with AES256.
+def dec [
+	path: path # The path to the encrypted file or folder to decrypt.
+	--clean (-c) # Delete the encrypted file or folder after decrypting.
+] {
+	gpg -d $path | tar -xvzf -
+	if (echo $clean | empty?) {} {
+		rm -rf $path
+	}
+}
