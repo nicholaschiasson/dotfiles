@@ -9,7 +9,7 @@
     in {
       devShells.default = pkgs.mkShell {
         buildInputs = [
-          pkgs.nixd
+          pkgs.nil
           pkgs.starship
         ];
         shellHook = ''
