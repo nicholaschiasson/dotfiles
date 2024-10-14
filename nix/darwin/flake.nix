@@ -85,11 +85,6 @@
         '';
 
       system.defaults = {
-        CustomSystemPreferences = {
-          "com.apple.preference.displays" = {
-            "com.apple.preference.displays.displaysDisplayTab" = "1680 x 1050";
-          };
-        };
         dock.largesize = 128;
         dock.magnification = true;
         dock.persistent-apps = [
