@@ -21,7 +21,6 @@
           pkgs.alacritty
           pkgs.audacity
           # pkgs.darwin.xcode
-          # pkgs.davinci-resolve
           pkgs.discord
           pkgs.docker
           pkgs.gimp
@@ -56,6 +55,13 @@
           "DaVinci Resolve" = 571213070;
         };
         onActivation.cleanup = "zap";
+        onActivation.autoUpdate = true;
+        onActivation.upgrade = true;
+      };
+
+      networking = {
+        computerName = "The Grimoire";
+        hostName = "TheGrimoire";
       };
 
       system.activationScripts.applications.text = let
@@ -77,6 +83,36 @@
             ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
           done
         '';
+
+      system.defaults = {
+        CustomSystemPreferences = {
+          "com.apple.preference.displays" = {
+            "com.apple.preference.displays.displaysDisplayTab" = "1680 x 1050";
+          };
+        };
+        dock.largesize = 128;
+        dock.magnification = true;
+        dock.persistent-apps = [
+          "/System/Applications/Mail.app"
+          "/Applications/Firefox.app"
+          "${pkgs.alacritty}/Applications/Alacritty.app"
+          "/Applications/Zed.app"
+          "/System/Applications/Messages.app"
+          "${pkgs.telegram-desktop}/Applications/Telegram.app"
+          "${pkgs.discord}/Applications/Discord.app"
+        ];
+        dock.tilesize = 16;
+        finder.AppleShowAllExtensions = true;
+        finder.AppleShowAllFiles = true;
+        finder.ShowPathbar = true;
+        finder.ShowStatusBar = true;
+        finder.FXPreferredViewStyle = "clmv";
+        loginwindow.GuestEnabled = false;
+        NSGlobalDomain.AppleICUForce24HourTime = true;
+        NSGlobalDomain.AppleInterfaceStyle = "Dark";
+        NSGlobalDomain.KeyRepeat = 2;
+        SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+      };
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
