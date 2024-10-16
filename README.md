@@ -26,24 +26,16 @@ nix run nix-darwin --extra-experimental-features 'nix-command flakes' -- switch 
 
 ### Upgrading
 
-Either update flake manually or update inputes to flake:
+Update inputs to flake using the helper script added to the environment:
 
 ```shell
-nix flake update ~/Projects/github.com/nicholaschiasson/dotfiles/nix/darwin
+update
 ```
 
-Reload configuration:
+Reload configuration after updating inputs or making modifications to nix files using the upgrade helper script added to the environment:
 
 ```shell
-darwin-rebuild switch --flake ~/Projects/github.com/nicholaschiasson/dotfiles/nix/darwin#witchy
-```
-
-If you have a convenient symlink to the flake, for example at `~/nix`, nix will not be able to use this directly.
-
-You can use `readlink` to resolve the symlink inline:
-
-```shell
-darwin-rebuild switch --flake $(readlink -f ~/nix)#witchy
+upgrade
 ```
 
 ### Resources
