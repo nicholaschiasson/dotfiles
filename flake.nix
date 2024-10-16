@@ -10,11 +10,7 @@
       devShells.default = pkgs.mkShell {
         buildInputs = [
           pkgs.nil
-          pkgs.starship
         ];
-        shellHook = ''
-          eval "$(starship init bash)"
-        '';
       };
     });
 }

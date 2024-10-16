@@ -6,10 +6,16 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
   let
+    username = "nicholaschiasson";
+
+    homedir = "/Users/${username}";
+
     configuration = { pkgs, config, ... }: {
 
       nixpkgs.config.allowUnfree = true;
@@ -34,9 +40,15 @@
           pkgs.mkalias
           pkgs.nushell
           pkgs.qbittorrent
+          pkgs.starship
           pkgs.telegram-desktop
           pkgs.zellij
         ];
+
+      users.users.${username} = {
+        name = username;
+        home = homedir;
+      };
 
       homebrew = {
         enable = true;
@@ -141,8 +153,15 @@
         {
           nix-homebrew = {
             enable = true;
-            user = "nicholaschiasson";
+            user = username;
           };
+        }
+        home-manager.darwinModules.home-manager
+        {
+          # `home-manager` config
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${username} = import ./home.nix;
         }
       ];
     };
