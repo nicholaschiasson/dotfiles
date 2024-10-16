@@ -17,7 +17,8 @@
     homedir = "/Users/${username}";
 
     # THIS IS A HACK BUT I DON'T KNOW HOW TO WORK AROUND IT FOR NOW!
-    flakedir = "~/Projects/github.com/nicholaschiasson/dotfiles/nix/darwin";
+    flakerepo = "~/Projects/github.com/nicholaschiasson/dotfiles";
+    flakedir = "${flakerepo}/nix/darwin";
 
     configuration = { pkgs, config, ... }: {
 
@@ -25,36 +26,39 @@
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [
-          pkgs.alacritty
-          pkgs.audacity
-          # pkgs.darwin.xcode
-          pkgs.discord
-          pkgs.docker
-          pkgs.gimp
-          pkgs.git
-          pkgs.gitui
-          # pkgs.google-chrome
-          pkgs.helix
-          pkgs.hurl
-          pkgs.maccy
-          pkgs.macchina
-          pkgs.mkalias
-          pkgs.nushell
-          pkgs.qbittorrent
-          pkgs.starship
-          pkgs.telegram-desktop
-          pkgs.zellij
+      environment.systemPackages = [
+        pkgs.alacritty
+        pkgs.audacity
+        # pkgs.darwin.xcode
+        pkgs.discord
+        pkgs.docker
+        pkgs.gimp
+        pkgs.git
+        pkgs.gitui
+        # pkgs.google-chrome
+        pkgs.helix
+        pkgs.hurl
+        pkgs.maccy
+        pkgs.macchina
+        pkgs.mkalias
+        pkgs.nushell
+        pkgs.qbittorrent
+        pkgs.starship
+        pkgs.telegram-desktop
+        pkgs.zellij
 
-          (pkgs.writeShellScriptBin "update" ''
-            nix flake update ${flakedir}
-          '')
+        (pkgs.writeShellScriptBin "update" ''
+          nix flake update ${flakedir}
+        '')
 
-          (pkgs.writeShellScriptBin "upgrade" ''
-            darwin-rebuild switch --flake ${flakedir}#witchy
-          '')
-        ];
+        (pkgs.writeShellScriptBin "upgrade" ''
+          darwin-rebuild switch --flake ${flakedir}#witchy
+        '')
+      ];
+
+      environment.interactiveShellInit = ''
+        alias dotfiles="cd ${flakerepo}";
+      '';
 
       users.users.${username} = {
         name = username;
@@ -140,8 +144,7 @@
       nix.settings.experimental-features = "nix-command flakes";
 
       # Create /etc/zshrc that loads the nix-darwin environment.
-      programs.zsh.enable = true;  # default shell on catalina
-      # programs.fish.enable = true;
+      programs.zsh.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
