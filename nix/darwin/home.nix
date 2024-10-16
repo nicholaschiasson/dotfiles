@@ -1,8 +1,6 @@
-{ config, pkgs, ... }:
+{ username, homedir }: { config, pkgs, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
-  username = "nicholaschiasson";
-  homedir = "/Users/${username}";
 in {
   programs.home-manager.enable = true;
 

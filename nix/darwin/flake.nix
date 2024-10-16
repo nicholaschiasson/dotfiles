@@ -16,6 +16,9 @@
 
     homedir = "/Users/${username}";
 
+    # THIS IS A HACK BUT I DON'T KNOW HOW TO WORK AROUND IT FOR NOW!
+    flakedir = "~/Projects/github.com/nicholaschiasson/dotfiles/nix/darwin";
+
     configuration = { pkgs, config, ... }: {
 
       nixpkgs.config.allowUnfree = true;
@@ -43,6 +46,14 @@
           pkgs.starship
           pkgs.telegram-desktop
           pkgs.zellij
+
+          (pkgs.writeShellScriptBin "update" ''
+            nix flake update ${flakedir}
+          '')
+
+          (pkgs.writeShellScriptBin "upgrade" ''
+            darwin-rebuild switch --flake ${flakedir}#witchy
+          '')
         ];
 
       users.users.${username} = {
@@ -161,7 +172,7 @@
           # `home-manager` config
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${username} = import ./home.nix;
+          home-manager.users.${username} = import ./home.nix { inherit username homedir; };
         }
       ];
     };
