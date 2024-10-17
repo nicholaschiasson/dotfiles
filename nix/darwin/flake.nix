@@ -57,12 +57,17 @@
       ];
 
       environment.interactiveShellInit = ''
-        alias dotfiles="cd ${flakerepo}";
+        alias dotfiles="cd ${flakerepo}"
       '';
+
+      environment.shells = [
+        pkgs.nushell
+      ];
 
       users.users.${username} = {
         name = username;
         home = homedir;
+        shell = pkgs.zsh;
       };
 
       homebrew = {
@@ -144,7 +149,13 @@
       nix.settings.experimental-features = "nix-command flakes";
 
       # Create /etc/zshrc that loads the nix-darwin environment.
-      programs.zsh.enable = true;
+      programs.zsh = {
+        enable = true;
+        promptInit = ''
+          eval "$(starship init zsh)"
+          macchina
+        '';
+      };
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -175,7 +186,7 @@
           # `home-manager` config
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${username} = import ./home.nix { inherit username homedir; };
+          home-manager.users.${username} = import ./home.nix { inherit username homedir flakerepo; };
         }
       ];
     };
