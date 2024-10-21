@@ -84,6 +84,7 @@
           "zed"
         ];
         masApps = {
+          "CleanMyMac" = 1339170533;
           "DaVinci Resolve" = 571213070;
         };
         onActivation.cleanup = "zap";
