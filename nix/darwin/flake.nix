@@ -136,6 +136,7 @@
         finder.ShowStatusBar = true;
         finder.FXPreferredViewStyle = "clmv";
         loginwindow.GuestEnabled = false;
+        NSGlobalDomain."com.apple.swipescrolldirection" = false;
         NSGlobalDomain.AppleICUForce24HourTime = true;
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
         NSGlobalDomain.KeyRepeat = 2;
