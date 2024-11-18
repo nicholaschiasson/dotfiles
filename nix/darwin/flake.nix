@@ -36,33 +36,34 @@
 
           # List packages installed in system profile. To search by name, run:
           # $ nix-env -qaP | grep wget
-          environment.systemPackages = [
-            pkgs.alacritty
-            pkgs.audacity
-            # pkgs.darwin.xcode
-            pkgs.discord
-            pkgs.docker
-            pkgs.gimp
-            pkgs.git
-            pkgs.gitui
-            # pkgs.google-chrome
-            pkgs.helix
-            pkgs.hurl
-            pkgs.maccy
-            pkgs.macchina
-            pkgs.mkalias
-            pkgs.nushell
-            pkgs.qbittorrent
-            pkgs.reaper
-            pkgs.starship
-            pkgs.telegram-desktop
-            pkgs.zellij
+          environment.systemPackages = with pkgs; [
+            alacritty
+            audacity
+            # darwin.xcode
+            discord
+            docker
+            gimp
+            git
+            gitui
+            # google-chrome
+            helix
+            hurl
+            maccy
+            macchina
+            mkalias
+            # minecraft
+            nushell
+            qbittorrent
+            reaper
+            starship
+            telegram-desktop
+            zellij
 
-            (pkgs.writeShellScriptBin "update" ''
+            (writeShellScriptBin "update" ''
               nix flake update ${flakedir}
             '')
 
-            (pkgs.writeShellScriptBin "upgrade" ''
+            (writeShellScriptBin "upgrade" ''
               darwin-rebuild switch --flake ${flakedir}#witchy
             '')
           ];
