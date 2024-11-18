@@ -1,4 +1,5 @@
-{ pkgs }: {
+{ pkgs }:
+{
   enable = true;
   settings = {
     scrollback_editor = "${pkgs.helix}/bin/hx";

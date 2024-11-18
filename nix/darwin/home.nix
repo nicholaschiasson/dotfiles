@@ -1,7 +1,13 @@
-{ username, homedir, flakerepo }: { config, pkgs, ... }:
+{
+  username,
+  homedir,
+  flakerepo,
+}:
+{ config, pkgs, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
-in {
+in
+{
   programs.home-manager.enable = true;
 
   home.username = username;
@@ -10,6 +16,19 @@ in {
   home.stateVersion = "24.05";
 
   programs.alacritty = import ../home/alacritty.nix { inherit pkgs; };
+  # programs.firefox = {
+  #   enable = true;
+  #   profiles = {
+  #     default = {
+  #       id = 0;
+  #       name = "default";
+  #       isDefault = true;
+  #       settings = {
+  #         "browser.fullscreen.exit_on_escape" = true;
+  #       };
+  #     };
+  #   };
+  # };
   programs.git = import ../home/git.nix;
   programs.gitui = import ../home/gitui.nix;
   programs.helix = import ../home/helix.nix;
