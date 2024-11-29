@@ -51,7 +51,6 @@
             maccy
             macchina
             mkalias
-            # minecraft
             nushell
             qbittorrent
             reaper
@@ -90,7 +89,9 @@
             casks = [
               "blender"
               "firefox"
+              "godot"
               "lmms"
+              "minecraft"
               "spotify"
               "vlc"
               "zed"
