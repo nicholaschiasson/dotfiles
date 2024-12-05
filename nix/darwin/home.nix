@@ -29,7 +29,7 @@ in
   #     };
   #   };
   # };
-  programs.git = import ../home/git.nix;
+  programs.git = import ../home/git.nix { inherit pkgs; };
   programs.gitui = import ../home/gitui.nix;
   programs.helix = import ../home/helix.nix;
   programs.nushell = import ../home/nushell.nix { inherit flakerepo; };

@@ -81,6 +81,8 @@
             shell = pkgs.zsh;
           };
 
+          users.groups.docker.members = [ "${username}" ];
+
           homebrew = {
             enable = true;
             brews = [

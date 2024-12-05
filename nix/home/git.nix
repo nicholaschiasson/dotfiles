@@ -1,3 +1,4 @@
+{ pkgs }:
 {
   enable = true;
   lfs.enable = true;
@@ -5,6 +6,9 @@
   userEmail = "nicholasomerchiasson@gmail.com";
 
   extraConfig = {
+    core = {
+      editor = "${pkgs.helix}/bin/hx";
+    };
     pull = {
       rebase = true;
     };
