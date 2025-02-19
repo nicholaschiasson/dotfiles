@@ -53,7 +53,6 @@
             mkalias
             nushell
             qbittorrent
-            reaper
             starship
             telegram-desktop
             zellij
@@ -94,12 +93,15 @@
               "godot"
               "lmms"
               "minecraft"
+              "obsidian"
+              "rider"
               "spotify"
               "vlc"
               "zed"
             ];
             masApps = {
               "DaVinci Resolve" = 571213070;
+              "Pages" = 409201541;
               "Xcode" = 497799835;
             };
             onActivation.cleanup = "zap";
