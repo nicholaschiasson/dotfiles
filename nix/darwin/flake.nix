@@ -88,6 +88,7 @@
               "mas"
             ];
             casks = [
+              "balenaetcher"
               "blender"
               "brave-browser"
               "firefox"
