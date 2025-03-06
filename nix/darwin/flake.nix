@@ -89,6 +89,7 @@
             ];
             casks = [
               "blender"
+              "brave-browser"
               "firefox"
               "godot"
               "lmms"
