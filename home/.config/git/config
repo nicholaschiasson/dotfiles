@@ -1,0 +1,9 @@
+[user]
+	name = nicholaschiasson
+	email = nicholasomerchiasson@gmail.com
+[core]
+	editor = hx
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main

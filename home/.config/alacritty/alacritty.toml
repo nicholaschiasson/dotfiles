@@ -1,0 +1,5 @@
+[terminal]
+shell = { program = "zellij" }
+
+[window]
+startup_mode = "Maximized"

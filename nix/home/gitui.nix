@@ -1,4 +1,4 @@
 {
   enable = true;
-  keyConfig = ../../.config/gitui/key_bindings.ron;
+  keyConfig = ../../home/.config/gitui/key_bindings.ron;
 }
