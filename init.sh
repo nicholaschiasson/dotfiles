@@ -34,6 +34,7 @@ sudo apt install -y \
 	dotnet-sdk-8.0 \
 	g++ \
 	git \
+	golang-go \
 	helix \
 	hurl \
 	just \
