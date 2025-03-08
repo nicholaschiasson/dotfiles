@@ -38,6 +38,7 @@ sudo apt install -y \
 	helix \
 	hurl \
 	just \
+	libasound2-dev \
 	libc++-dev \
 	libc++1 \
 	libc++abi-dev \
@@ -50,8 +51,11 @@ sudo apt install -y \
 	libllvm-ocaml-dev \
 	libomp-dev \
 	libomp5 \
+	libudev-dev \
+	libx11-dev \
 	libxcb-xfixes0-dev \
 	libxkbcommon-dev \
+	libxkbcommon-x11-0 \
 	lld \
 	lldb \
 	llvm \
