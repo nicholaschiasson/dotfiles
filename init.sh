@@ -31,10 +31,12 @@ sudo apt install -y \
 	clangd \
 	cmake \
 	discord \
+	dotnet-sdk-8.0 \
 	g++ \
 	git \
 	helix \
 	hurl \
+	just \
 	libc++-dev \
 	libc++1 \
 	libc++abi-dev \
@@ -76,7 +78,7 @@ chsh -s $(which zsh)
 # # spotify
 # # davinci resolve
 
-# Update path with cargo bin dir
+curl -f https://zed.dev/install.sh | sh
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
