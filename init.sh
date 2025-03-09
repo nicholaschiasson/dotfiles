@@ -12,6 +12,7 @@ echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] http
 
 echo "deb https://apt.fury.io/nushell/ /" | sudo tee /etc/apt/sources.list.d/fury.list
 
+sudo add-apt-repository -y ppa:fish-shell/release-4
 sudo add-apt-repository -y ppa:maveonair/helix-editor
 sudo add-apt-repository -y ppa:lepapareil/hurl
 
@@ -32,6 +33,7 @@ sudo apt install -y \
 	cmake \
 	discord \
 	dotnet-sdk-8.0 \
+	fish \
 	g++ \
 	git \
 	golang-go \
@@ -68,10 +70,9 @@ sudo apt install -y \
 	qbittorrent \
 	steam \
 	telegram-desktop \
-	vlc \
-	zsh
+	vlc
 
-chsh -s $(which zsh)
+chsh -s $(which fish)
 
 # Not managed
 # # docker
