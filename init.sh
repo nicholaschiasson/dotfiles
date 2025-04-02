@@ -39,7 +39,6 @@ sudo apt install -y \
 	golang-go \
 	helix \
 	hurl \
-	just \
 	libasound2-dev \
 	libc++-dev \
 	libc++1 \
@@ -90,9 +89,12 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 curl -sS https://starship.rs/install.sh | sh -s -- -y
 
+curl https://mise.run | sh
+
 cargo install --locked \
 	cargo-watch \
 	gitui \
+	just \
 	macchina \
 	zellij
 
