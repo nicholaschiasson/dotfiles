@@ -22,6 +22,7 @@ sudo apt upgrade -y
 
 sudo apt install -y \
 	alacritty \
+	arduino \
 	blender \
 	brave-browser \
 	build-essential \
@@ -39,6 +40,9 @@ sudo apt install -y \
 	golang-go \
 	helix \
 	hurl \
+	kdenlive \
+	libapr1 \
+	libaprutil1 \
 	libasound2-dev \
 	libc++-dev \
 	libc++1 \
@@ -54,6 +58,8 @@ sudo apt install -y \
 	libomp5 \
 	libudev-dev \
 	libx11-dev \
+	libxcb-cursor0 \
+	libxcb-damage0 \
 	libxcb-xfixes0-dev \
 	libxkbcommon-dev \
 	libxkbcommon-x11-0 \
