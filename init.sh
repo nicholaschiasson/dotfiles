@@ -4,6 +4,8 @@ set -ex
 
 >&2 sudo echo Root login successful.
 
+TEMP_DIR=$(mktemp -d)
+
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 
 curl -fsSL https://apt.fury.io/nushell/gpg.key | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/fury-nushell.gpg
@@ -11,6 +13,8 @@ curl -fsSL https://apt.fury.io/nushell/gpg.key | sudo gpg --dearmor --yes -o /et
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
 echo "deb https://apt.fury.io/nushell/ /" | sudo tee /etc/apt/sources.list.d/fury.list
+
+curl -fsSLo ${TEMP_DIR}/balena-etcher.deb https://github.com/balena-io/etcher/releases/download/v2.1.4/balena-etcher_2.1.4_amd64.deb
 
 sudo add-apt-repository -y ppa:fish-shell/release-4
 sudo add-apt-repository -y ppa:maveonair/helix-editor
@@ -21,6 +25,7 @@ sudo apt update
 sudo apt upgrade -y
 
 sudo apt install -y \
+	${TEMP_DIR}/balena-etcher.deb \
 	alacritty \
 	arduino \
 	blender \
