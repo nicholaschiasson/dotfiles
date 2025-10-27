@@ -28,6 +28,7 @@ sudo apt install -y \
 	${TEMP_DIR}/balena-etcher.deb \
 	alacritty \
 	arduino \
+	bat \
 	blender \
 	brave-browser \
 	build-essential \
