@@ -1,0 +1,13 @@
+theme = "kanagawa"
+
+[editor]
+bufferline = "always"
+default-line-ending = "lf"
+line-number = "relative"
+mouse = false
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.file-picker]
+hidden = false

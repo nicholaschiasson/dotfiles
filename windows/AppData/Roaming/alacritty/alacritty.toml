@@ -1,0 +1,10 @@
+[[keyboard.bindings]]
+key = "V"
+mods = "Control"
+action = "Paste"
+
+[terminal]
+shell = { program = "wsl", args = [ "--cd", "~", "--", "zellij" ] }
+
+[window]
+startup_mode = "Maximized"

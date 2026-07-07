@@ -1,0 +1,4 @@
+[[reminders]]
+summary = 'Take a walk'
+description = 'Get off your lazy ass and get some circulation to those legs'
+schedule = '0 0 10-17 * * 1-5'

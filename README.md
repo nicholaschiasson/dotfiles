@@ -1,49 +1,43 @@
 # dotfiles
 
-Using this repo, you can get a new system setup in just a few commands.
+_by nchiasson_
 
-## Mac
+## Preamble
 
-### Setup
+This repo is for my own workstation. It used to be more geared for NixOS. Now I am not a big fan of that...
 
-Install NixOS:
+## Setup
 
-```shell
-sh <(curl -L https://nixos.org/nix/install)
+### Windows
+
+Step one is to run the Windows side initialization. This is done by invoking the powershell script `init.ps1`.
+
+First, open an escalated privilege powershell window and set the execution policy to allow script execution:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 ```
 
-Clone this repo:
+Next, run the powershell initialization script:
 
-```shell
-nix-shell -p git --run 'git clone https://github.com/nicholaschiasson/dotfiles.git ~/Projects/github.com/nicholaschiasson/dotfiles'
+```powershell
+.\init.ps1
 ```
 
-Install configuration:
+This will install some programs, place some configuration, and install Fedora in WSL.
 
-```shell
-nix run nix-darwin --extra-experimental-features 'nix-command flakes' -- switch --flake ~/Projects/github.com/nicholaschiasson/dotfiles/nix/darwin#witchy
+Step two is to run the WSL side initialization. This is done by invoking the bash script `init.sh` from within Fedora (WSL).
+
+Run the following in a WSL terminal window:
+
+```bash
+./init.sh
 ```
 
-### Upgrading
+### Linux
 
-Update inputs to flake using the helper script added to the environment:
+Simply run the init shell script in a terminal.
 
-```shell
-update
+```bash
+./init.sh
 ```
-
-Reload configuration after updating inputs or making modifications to nix files using the upgrade helper script added to the environment:
-
-```shell
-upgrade
-```
-
-### Resources
-
-[Elliott's video](https://www.youtube.com/watch?v=Z8BL8mdzWHI)
-
-[Elliott's own dotfile](https://github.com/elliottminns/dotfiles)
-
-[nix-darwin](https://github.com/LnL7/nix-darwin)
-
-[MyNixOS](https://mynixos.com/)
