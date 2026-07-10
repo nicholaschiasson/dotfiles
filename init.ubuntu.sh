@@ -6,6 +6,12 @@ set -ex
 
 TEMP_DIR=$(mktemp -d)
 
+cleanup() {
+	rm -rf ${TEMP_DIR}
+}
+
+trap cleanup EXIT
+
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 
 curl -fsSL https://apt.fury.io/nushell/gpg.key | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/fury-nushell.gpg
@@ -26,7 +32,6 @@ sudo apt upgrade -y
 
 sudo apt install -y \
 	${TEMP_DIR}/balena-etcher.deb \
-	alacritty \
 	arduino \
 	bat \
 	blender \
@@ -39,14 +44,13 @@ sudo apt install -y \
 	clangd \
 	cmake \
 	discord \
-	dotnet-sdk-8.0 \
+	fd-find \
 	fish \
 	g++ \
 	git \
-	golang-go \
+	git-delta \
 	helix \
 	hurl \
-	kdenlive \
 	libapr1 \
 	libaprutil1 \
 	libasound2-dev \
@@ -58,6 +62,7 @@ sudo apt install -y \
 	libclang1 \
 	libfontconfig1-dev \
 	libfreetype6-dev \
+	libicu-dev \
 	liblldb-dev \
 	libllvm-ocaml-dev \
 	libomp-dev \
@@ -74,14 +79,15 @@ sudo apt install -y \
 	llvm \
 	llvm-dev \
 	llvm-runtime \
+	net-tools \
 	nushell \
+	openssl \
 	pkg-config \
-	python3 \
-	python3-clang \
 	qbittorrent \
 	steam \
-	telegram-desktop \
-	vlc
+	vlc \
+	wget \
+	zsh
 
 chsh -s $(which fish)
 
@@ -93,26 +99,33 @@ chsh -s $(which fish)
 # # obsidian
 # # rider
 # # spotify
+# # telegram
 # # davinci resolve
 
 curl -f https://zed.dev/install.sh | sh
 
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
-curl -sS https://starship.rs/install.sh | sh -s -- -y
-
 curl https://mise.run | sh
 
-cargo install --locked \
-	cargo-watch \
+mise exec rust -- cargo install --locked \
+	alacritty \
 	gitui \
-	just \
 	macchina \
-	zellij
+	mir \
+	starship \
+	tokei \
+	xh
 
-for f in $(find home -type f)
+curl -L https://github.com/zellij-org/zellij/releases/latest/download/zellij-$(uname -m)-unknown-linux-musl.tar.gz -o- | tar -xzC ~/.local/bin
+
+curl -fsSL https://claude.ai/install.sh | bash
+
+for f in $(find home -type f,l)
 do
 	cf=$HOME/${f#*/}
 	mkdir -p $(dirname $cf)
 	ln -sf $(realpath $f) $cf
 done
+
+echo
+echo "You're all set up mate! Restart your shell and get hacking!"
+
