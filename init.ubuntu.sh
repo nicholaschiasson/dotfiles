@@ -91,6 +91,8 @@ sudo apt install -y \
 
 chsh -s $(which fish)
 
+curl -fsSL https://tailscale.com/install.sh | sh
+
 # Not managed
 # # docker
 # # gimp
