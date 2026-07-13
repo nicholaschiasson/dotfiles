@@ -81,9 +81,11 @@ sudo apt install -y \
 	llvm-runtime \
 	net-tools \
 	nushell \
+	obs-studio \
 	openssl \
 	pkg-config \
 	qbittorrent \
+	slack-desktop \
 	steam \
 	vlc \
 	wget \
