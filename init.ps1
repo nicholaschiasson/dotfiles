@@ -32,7 +32,8 @@ winget install \
     svenstaro.miniserve \
     Telegram.TelegramDesktop \
     Valve.Steam \
-    VideoLAN.VLC
+    VideoLAN.VLC \
+    yt-dlp.yt-dlp
 
 ~\.cargo\bin\rustup.exe toolchain install stable-x86_64-pc-windows-gnu
 ~\.cargo\bin\rustup.exe default stable-x86_64-pc-windows-gnu
