@@ -38,7 +38,6 @@ curl https://mise.run | sh
 
 mise exec rust -- cargo install --locked \
   macchina \
-  mir \
   starship \
   xh
 
